@@ -22,12 +22,10 @@ export class AppController {
       for await (const chunk of this.appService.generateAIContent(
         body.prompt,
       )) {
-        // Preserve newlines in the response
-        const formattedChunk = chunk.replace(/\n/g, '\n');
-        res.write(`data: ${formattedChunk}\n\n`);
+        res.write(chunk);
       }
     } catch {
-      res.write(`data: Error occurred\n\n`);
+      res.write('Error occurred');
     }
     res.end();
   }

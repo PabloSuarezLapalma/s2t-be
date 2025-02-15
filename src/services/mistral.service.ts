@@ -7,7 +7,7 @@ export class MistralService {
     res.set({
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
-      Connection: 'keep-alive',
+      Connection: 'keep-alive'
     });
 
     const client = new Mistral({ apiKey: process.env.MISTRAL_API_KEY });
@@ -15,7 +15,7 @@ export class MistralService {
     try {
       const result = await client.chat.stream({
         model: 'mistral-large-latest',
-        messages: [{ role: 'user', content: body.prompt }],
+        messages: [{ role: 'user', content: body.prompt }]
       });
 
       for await (const chunk of result) {
